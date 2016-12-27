@@ -59,6 +59,7 @@ error_check 'Updates and depos installation'
 
 ##Create FTP Group
 addgroup ftpaccess
+print_status "${YELLOW}Configuration Complete${NC}"
 
 
 
