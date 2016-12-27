@@ -53,8 +53,14 @@ export DEBIAN_FRONTEND=noninteractive
 ##Begin scripting
 print_status "${YELLOW}Adding Repos/Depos...Please Wait${NC}"
 apt-get update &>> $logfile 
-apt-get install openssh-server unattended-upgrades apt-listchanges fail2ban -y  &>> $logfile
+apt-get install openssh-server unattended-upgrades apt-listchanges fail2ban ufw -y  &>> $logfile
+ufw limit OpenSSH  &>> $logfile
 error_check 'Updates and depos installation'
+
+##Create FTP Group
+addgroup ftpaccess
+
+
 
 
 
