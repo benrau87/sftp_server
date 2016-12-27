@@ -59,7 +59,7 @@ error_check 'Updates and depos installation'
 
 ##Create FTP Group
 addgroup ftpaccess
-print_status "${YELLOW}Configuration Complete${NC}"
+print_status "${YELLOW}Configuration Complete...Run the adduser.sh script to create a SFTP user.${NC}"
 
 
 
