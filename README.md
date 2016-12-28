@@ -1,9 +1,12 @@
 # sftp_server
 SFTP server setup
 
-Configured as securely as poossible
+Just run sudo bash setup.sh
+
+Configured as securely as possible 
+
+Every remote user is jailed to the upload folder in their home directoy
 
 User accounts created with supplied script are limited to 7 days of access 
-and can only use the uploads folder in their home directory
 
 Enjoy!
