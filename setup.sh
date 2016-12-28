@@ -51,6 +51,8 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 ##Begin scripting
+chmod +x adduser.sh
+chown root:root adduser.sh
 print_status "${YELLOW}Adding Repos/Depos...Please Wait${NC}"
 apt-get update -y &>> $logfile 
 apt-get upgrade -y &>> $logfile 
