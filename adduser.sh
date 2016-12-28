@@ -12,7 +12,8 @@ fi
 echo -e "${YELLOW} What is the new user's name?${NC}"
 read user
 
-usermod $user --expiredate $expdate --ingroup ftpaccess --shell /usr/sbin/nologin
+useradd $user --ingroup ftpaccess --shell /usr/sbin/nologin
+usermod $user --expiredate $expdate
 chown root:root /home/$user
 mkdir /home/$user/upload
 chown $user:ftpaccess /home/$user/upload
