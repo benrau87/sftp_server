@@ -5,7 +5,7 @@ if [ "$EUID" -ne 0 ]
 fi
 ##Working directories
 gitdir=$PWD
-logfile=/var/log/cuckoo_install.log
+logfile=/var/log/sftp_install.log
 mkfifo ${logfile}.pipe
 tee < ${logfile}.pipe $logfile &
 exec &> ${logfile}.pipe
