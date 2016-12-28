@@ -22,7 +22,7 @@ echo -e "${YELLOW} What is the new user's name?${NC}"
 read user
 
 adduser $user --ingroup ftpaccess --shell /usr/sbin/nologin
-echo $pass | passwd $user --stdin
+#echo $pass | passwd $user --stdin
 usermod $user --expiredate $expdate
 chown root:root /home/$user
 mkdir /home/$user/uploads
