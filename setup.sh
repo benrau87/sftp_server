@@ -52,7 +52,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 ##Begin scripting
 print_status "${YELLOW}Adding Repos/Depos...Please Wait${NC}"
-apt-get update &>> $logfile 
+apt-get update -y &>> $logfile 
+apt-get upgrade -y &>> $logfile 
 apt-get install openssh-server unattended-upgrades apt-listchanges fail2ban ufw -y  &>> $logfile
 ufw limit OpenSSH  &>> $logfile
 error_check 'Updates and depos installation'
