@@ -85,8 +85,11 @@ error_check 'SSHD configuration changes'
 
 ##Create FTP Group
 addgroup ftpaccess &>> $logfile 
+
+##Remove files
 cd ..
 rm -rf $gitdir/sftp_server
+
 print_status "${YELLOW}Configuration Complete...Run the adduser.sh script to create a SFTP user.${NC}"
 
 
