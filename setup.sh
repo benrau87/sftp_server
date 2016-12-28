@@ -66,9 +66,9 @@ error_check 'Updates and depos installation'
 print_status "${YELLOW}Modifying SFTP configuration${NC}"
 ##Remove unwanted config
 
-sed -i '\| X11Forwarding yes |d' /etc/ssh/sshd_config &>> $logfile 
-sed -i '\| X11DisplayOffset 10 |d' /etc/ssh/sshd_config &>> $logfile 
-sed -i '\| Subsystem sftp /usr/lib/openssh/sftp-server |d' /etc/ssh/sshd_config &>> $logfile 
+sed -i '\|X11Forwarding yes|d' /etc/ssh/sshd_config &>> $logfile 
+sed -i '\|X11DisplayOffset 10|d' /etc/ssh/sshd_config &>> $logfile 
+sed -i '\|Subsystem sftp /usr/lib/openssh/sftp-server|d' /etc/ssh/sshd_config &>> $logfile 
 
 ##Add wanted config
 echo "Subsystem sftp internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
