@@ -53,6 +53,7 @@ export DEBIAN_FRONTEND=noninteractive
 ##Begin scripting
 chmod +x adduser.sh
 chown root:root adduser.sh
+mv adduser.sh ~
 print_status "${YELLOW}Adding Repos/Depos...Please Wait${NC}"
 apt-get update -y &>> $logfile 
 apt-get upgrade -y &>> $logfile 
@@ -84,7 +85,9 @@ error_check 'SSHD configuration changes'
 
 ##Create FTP Group
 addgroup ftpaccess &>> $logfile 
+rm -rf $gitdir/sftp_server
 print_status "${YELLOW}Configuration Complete...Run the adduser.sh script to create a SFTP user.${NC}"
+
 
 
 
