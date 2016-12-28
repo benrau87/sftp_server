@@ -11,7 +11,7 @@ exec &> ${logfile}.pipe
 rm ${logfile}.pipe
 
 expdate=$(date -d "7 days" +"%Y-%m-%d")
-pass=$(openssl rand -base64 10)
+pass=$(openssl rand -base64 12)
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
