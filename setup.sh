@@ -61,14 +61,14 @@ error_check 'Updates and depos installation'
 ##Modifying config 
 print_status "${YELLOW}Modifying SFTP configuration${NC}"
 
-echo "Subsystem sftp internal-sftp" | sudo tee -a /etc/ssh/sshd_config 
-echo "Match group ftpaccess" | sudo tee -a /etc/ssh/sshd_config 
-echo "ChrootDirectory %h" | sudo tee -a /etc/ssh/sshd_config 
-echo "X11Forwarding no" | sudo tee -a /etc/ssh/sshd_config 
-echo "AllowTcpForwarding no" | sudo tee -a /etc/ssh/sshd_config 
-echo "ForceCommand internal-sftp" | sudo tee -a /etc/ssh/sshd_config 
-
-
+echo "Subsystem sftp internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
+echo "Match group ftpaccess" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
+echo "ChrootDirectory %h" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
+echo "X11Forwarding no" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
+echo "AllowTcpForwarding no" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
+echo "ForceCommand internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
+sed -i '\| Subsystem sftp /usr/lib/openssh/sftp-server |d' /etc/ssh/sshd_config &>> $logfile 
+ 
 ##Create FTP Group
 addgroup ftpaccess
 print_status "${YELLOW}Configuration Complete...Run the adduser.sh script to create a SFTP user.${NC}"
