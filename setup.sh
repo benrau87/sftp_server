@@ -54,23 +54,25 @@ export DEBIAN_FRONTEND=noninteractive
 chmod +x adduser.sh
 chown root:root adduser.sh
 mv adduser.sh ~
+
+##Updates and stuff
 print_status "${YELLOW}Adding Repos/Depos...Please Wait${NC}"
 apt-get update -y &>> $logfile 
 apt-get upgrade -y &>> $logfile 
 apt-get install openssh-server unattended-upgrades apt-listchanges fail2ban ufw -y  &>> $logfile
-ufw limit OpenSSH  &>> $logfile
-cp $gitdir/issue /etc/ssh/
 error_check 'Updates and depos installation'
+ufw limit OpenSSH  &>> $logfile
+
+##Banner
+cp $gitdir/issue /etc/ssh/
 
 ##Modifying config 
 print_status "${YELLOW}Modifying SFTP configuration${NC}"
-##Remove unwanted config
-
+##Remove unwanted configs
 sed -i '\|X11Forwarding yes|d' /etc/ssh/sshd_config &>> $logfile 
 sed -i '\|X11DisplayOffset 10|d' /etc/ssh/sshd_config &>> $logfile 
 sed -i '\|Subsystem sftp /usr/lib/openssh/sftp-server|d' /etc/ssh/sshd_config &>> $logfile 
-
-##Add wanted config
+##Adding wanted configs
 echo "Subsystem sftp internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 echo "Match group ftpaccess" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 echo "ChrootDirectory %h" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
@@ -79,12 +81,14 @@ echo "AllowTcpForwarding no" | sudo tee -a /etc/ssh/sshd_config &>> $logfile
 echo "ForceCommand internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 echo "Banner /etc/ssh/issue" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
  
- 
+ ##Restart service with new configs
 service ssh restart &>> $logfile 
-error_check 'SSHD configuration changes'
+error_check 'SFTP configuration changes'
 
 ##Create FTP Group
+print_status "${YELLOW}Creating group for SFTP users${NC}"
 addgroup ftpaccess &>> $logfile 
+error_check 'SFTP Users group'
 
 ##Remove files
 cd ~
