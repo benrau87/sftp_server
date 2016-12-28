@@ -2,12 +2,12 @@
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
+expdate=$(date -d "+7 days")
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit 1
 fi
-expdate = $(date -d "7 days" +"%Y-%m-%d")
 
 echo -e "${YELLOW} What is the new user's name?${NC}"
 read user
