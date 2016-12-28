@@ -69,6 +69,8 @@ echo "AllowTcpForwarding no" | sudo tee -a /etc/ssh/sshd_config &>> $logfile
 echo "ForceCommand internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 sed -i '\| Subsystem sftp /usr/lib/openssh/sftp-server |d' /etc/ssh/sshd_config &>> $logfile 
  
+service ssh restart
+
 ##Create FTP Group
 addgroup ftpaccess
 print_status "${YELLOW}Configuration Complete...Run the adduser.sh script to create a SFTP user.${NC}"
