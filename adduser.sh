@@ -11,7 +11,7 @@ exec &> ${logfile}.pipe
 rm ${logfile}.pipe
 
 expdate=$(date -d "7 days" +"%Y-%m-%d")
-pass=$(openssl rand -base64 16)
+pass=$(openssl rand -base64 10)
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
@@ -28,6 +28,7 @@ chown root:root /home/$user
 mkdir /home/$user/uploads
 chown $user:ftpaccess /home/$user/uploads
 
+echo
 echo -e "${YELLOW}User account ${RED}$user ${YELLOW}with password ${RED}$pass ${YELLOW}has been created and will expire on ${RED}$expdate ${NC}" 
 
 echo -e "${YELLOW}User account ${RED}$user ${YELLOW}with password ${RED}$pass ${YELLOW}has been created and will expire on ${RED}$expdate ${NC}" &>> $logfile
