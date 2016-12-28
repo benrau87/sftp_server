@@ -28,5 +28,7 @@ chown root:root /home/$user
 mkdir /home/$user/uploads
 chown $user:ftpaccess /home/$user/uploads
 
+echo -e "${YELLOW}User account ${RED}$user ${YELLOW}with password ${RED}$pass ${YELLOW}has been created and will expire on ${RED}$expdate ${NC}" 
+
 echo -e "${YELLOW}User account ${RED}$user ${YELLOW}with password ${RED}$pass ${YELLOW}has been created and will expire on ${RED}$expdate ${NC}" &>> $logfile
 
