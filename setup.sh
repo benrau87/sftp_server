@@ -10,7 +10,7 @@ mkfifo ${logfile}.pipe
 tee < ${logfile}.pipe $logfile &
 exec &> ${logfile}.pipe
 rm ${logfile}.pipe
-
+ 
 ##Colors!!
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
