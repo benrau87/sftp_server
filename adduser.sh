@@ -2,7 +2,7 @@
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
-expdate=$(date -d "+7 days")
+expdate=$(date -d "7 days" +"%Y-%m-%d")
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
