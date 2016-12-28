@@ -21,8 +21,8 @@ fi
 echo -e "${YELLOW} What is the new user's name?${NC}"
 read user
 
-adduser $user --ingroup ftpaccess --shell /usr/sbin/nologin --password $pass
-
+adduser --ingroup ftpaccess --shell /usr/sbin/nologin --disabled-password --gecos ""  $user
+echo $pass | passwd $user --stdin
 usermod $user --expiredate $expdate
 chown root:root /home/$user
 mkdir /home/$user/uploads
