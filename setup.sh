@@ -56,6 +56,7 @@ apt-get update -y &>> $logfile
 apt-get upgrade -y &>> $logfile 
 apt-get install openssh-server unattended-upgrades apt-listchanges fail2ban ufw -y  &>> $logfile
 ufw limit OpenSSH  &>> $logfile
+cp $gitdir/issue /etc/ssh/
 error_check 'Updates and depos installation'
 
 ##Modifying config 
