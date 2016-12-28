@@ -61,7 +61,13 @@ error_check 'Updates and depos installation'
 
 ##Modifying config 
 print_status "${YELLOW}Modifying SFTP configuration${NC}"
+##Remove unwanted config
 
+sed -i '\| X11Forwarding yes |d' /etc/ssh/sshd_config &>> $logfile 
+sed -i '\| X11DisplayOffset 10 |d' /etc/ssh/sshd_config &>> $logfile 
+sed -i '\| Subsystem sftp /usr/lib/openssh/sftp-server |d' /etc/ssh/sshd_config &>> $logfile 
+
+##Add wanted config
 echo "Subsystem sftp internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 echo "Match group ftpaccess" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 echo "ChrootDirectory %h" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
@@ -69,7 +75,7 @@ echo "X11Forwarding no" | sudo tee -a /etc/ssh/sshd_config &>> $logfile
 echo "AllowTcpForwarding no" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 echo "ForceCommand internal-sftp" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
 echo "Banner /etc/ssh/issue" | sudo tee -a /etc/ssh/sshd_config &>> $logfile 
-sed -i '\| Subsystem sftp /usr/lib/openssh/sftp-server |d' /etc/ssh/sshd_config &>> $logfile 
+ 
  
 service ssh restart &>> $logfile 
 error_check 'SSHD configuration changes'
