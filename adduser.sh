@@ -7,7 +7,7 @@ if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit 1
 fi
-expdate = 'date -d "7 days" +"%Y-%m-%d"'
+expdate = (date -d "7 days" +"%Y-%m-%d"')
 
 echo -e "${YELLOW} What is the new user's name?${NC}"
 read user
@@ -17,5 +17,5 @@ chown root:root /home/$user
 mkdir /home/$user/upload
 chown $user:ftpaccess /home/$user/upload
 
-echo -e "${YELLOW}User account ${RED} $user ${YELLOW}has been created and will expire on ${RED} $expdate ${NC}"
+echo -e "${YELLOW}User account ${RED}$user ${YELLOW}has been created and will expire on ${RED}$expdate ${NC}"
 
