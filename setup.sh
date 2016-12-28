@@ -93,7 +93,7 @@ error_check 'SFTP Users group'
 
 ##Remove files
 cd ~
-rm -rf $gitdir/sftp_server
+rm -rf $gitdir/sftp_server/*
 
 print_status "${YELLOW}Configuration Complete...Run the adduser.sh script to create a SFTP user.${NC}"
 
