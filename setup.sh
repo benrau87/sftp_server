@@ -54,6 +54,9 @@ export DEBIAN_FRONTEND=noninteractive
 chmod +x adduser.sh
 chown root:root adduser.sh
 mv adduser.sh ~
+chmod +x consultant_add.sh
+chown root:root consultant_add.sh
+mv consultant_add.sh ~
 
 ##Warn
 echo -e "${YELLOW}Waiting for dpkg process to free up...If this takes too long try running ${RED}sudo rm -f /var/lib/dpkg/lock${YELLOW} in another terminal window.${NC}"
