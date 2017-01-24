@@ -24,7 +24,7 @@ read user
 adduser --ingroup consultants --disabled-password --gecos ""  $user
 echo $user:$pass | chpasswd
 usermod $user --expiredate $expdate
-chown root:root /home/$user
+chown $user:consultants /home/$user
 mkdir /home/$user/uploads
 chown $user:ftpaccess /home/$user/uploads
 
