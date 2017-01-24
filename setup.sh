@@ -97,6 +97,11 @@ print_status "${YELLOW}Creating group for SFTP users${NC}"
 addgroup ftpaccess &>> $logfile 
 error_check 'SFTP Users group'
 
+##Create Consultants Group
+print_status "${YELLOW}Creating group for consultants${NC}"
+addgroup consultants &>> $logfile 
+error_check 'SFTP consultants group'
+
 ##Remove files
 cd ~
 rm -rf $gitdir/sftp_server/*
