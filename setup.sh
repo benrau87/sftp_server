@@ -64,13 +64,9 @@ done
 print_status "${YELLOW}Adding Repos/Depos...Please Wait${NC}"
 print_notification "Updating and installing openssh-server unattended-upgrades apt-listchanges fail2ban ufw"
 apt-get update -y &>> $logfile 
-##Warn
-echo -e "${YELLOW}Waiting for dpkg process to free up...If this takes too long try running ${RED}sudo rm -f /var/lib/dpkg/lock${YELLOW} in another terminal window.${NC}"
-while fuser /var/lib/dpkg/lock >/dev/null 2>&1; do
-   sleep 1
-done
 apt-get upgrade -y &>> $logfile 
 apt-get install openssh-server unattended-upgrades apt-listchanges fail2ban ufw -y  &>> $logfile
+apt-get autoclean -y &>> $logfile
 error_check 'Updates and depos installation'
 ufw limit OpenSSH  &>> $logfile
 
