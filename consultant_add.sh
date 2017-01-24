@@ -21,7 +21,7 @@ fi
 echo -e "${YELLOW} What is the consultants name?${NC}"
 read user
 
-adduser --ingroup ftpaccess --disabled-password --gecos ""  $user
+adduser --ingroup consultants --disabled-password --gecos ""  $user
 echo $user:$pass | chpasswd
 usermod $user --expiredate $expdate
 chown root:root /home/$user
