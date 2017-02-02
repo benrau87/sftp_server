@@ -31,5 +31,5 @@ chown $user:ftpaccess /home/$user/uploads
 echo
 echo -e "${YELLOW}User account ${RED}$user ${YELLOW}with password ${RED}$pass ${YELLOW}has been created and will expire on ${RED}$expdate ${NC}" 
 
-echo "User account $user with password $pass will expire on $expdate" &>> $logfile
+echo -e "User account $user with password $pass will expire on $expdate" &>> $logfile
 
