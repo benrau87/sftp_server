@@ -6,7 +6,7 @@ NC='\033[0m'
 
 logfile=/var/log/sftp_users.log
 mkfifo ${logfile}.pipe
-tee < ${logfile}.pipe $logfile &
+tee -a < ${logfile}.pipe $logfile &
 exec &> ${logfile}.pipe
 rm ${logfile}.pipe
 
